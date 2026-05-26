@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Protects manager-owned files from employee commits.
+# Installed to .git/hooks/pre-commit by: bash scripts/add-employee.sh
+
+PROTECTED=(
+  "brand_context/"
+  "context/SOUL.md"
+  "context/SETUP.md"
+)
+
+STAGED=$(git diff --cached --name-only 2>/dev/null)
+
+for protected in "${PROTECTED[@]}"; do
+  if echo "$STAGED" | grep -q "^${protected}"; then
+    echo ""
+    echo "  ✗ Commit blocked: '${protected}' is manager-owned."
+    echo "    To update company-wide content, contact your manager."
+    echo "    They will add it to the company repo — it auto-syncs on next update."
+    echo ""
+    exit 1
+  fi
+done
+
+exit 0

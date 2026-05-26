@@ -1,0 +1,10 @@
+{
+  "id": "daily-company-sync",
+  "name": "Daily Company Skills Sync",
+  "description": "Pulls the latest company skills and brand context from GitHub each morning.",
+  "schedule": "0 8 * * 1-5",
+  "skill": "ops-github-sync",
+  "prompt": "Run /ops-github-sync to pull the latest company skills and brand context from the company GitHub repo. Skip context/USER.md and context/memory/ — do not overwrite personal files.",
+  "enabled": true,
+  "notes": "Runs weekdays at 8am. Adjust schedule field (cron syntax) to match your timezone."
+}
