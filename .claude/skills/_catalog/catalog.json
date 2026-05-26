@@ -13,6 +13,7 @@
     "meta-synthesize-locals",
     "meta-wrap-up",
     "mkt-brand-voice",
+    "mkt-icp",
     "ops-cron",
     "ops-github-sync",
     "tool-humanizer"
@@ -22,18 +23,6 @@
       "category": "execution",
       "version": "1.0.0",
       "description": "Differentiation angles, hooks, and USP messaging",
-      "story": { "text": "", "video": "" },
-      "changelog": [
-        { "version": "1.0.0", "summary": "Initial release" }
-      ],
-      "requires_services": [],
-      "dependencies": [],
-      "mcp_servers": []
-    },
-    "mkt-icp": {
-      "category": "execution",
-      "version": "1.0.0",
-      "description": "Ideal customer profile — who to target and why they buy",
       "story": { "text": "", "video": "" },
       "changelog": [
         { "version": "1.0.0", "summary": "Initial release" }
