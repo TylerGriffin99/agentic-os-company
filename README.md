@@ -9,14 +9,12 @@ Agentic OS gives Claude Code personality, memory, and skills so it works like a 
 ## Quickstart
 
 ```bash
-git clone https://<YOUR-TOKEN>@github.com/simonc602/agentic-os.git
+git clone https://<github url>/agentic-os.git
 cd agentic-os
 bash scripts/centre.sh
 ```
 
 **Test edit**: Added this line to test file editing permissions at 2026-04-16.
-
-Replace `<YOUR-TOKEN>` with the access token from the [Agentic Academy classroom](https://www.skool.com/scrapes/classroom/d1cfafed?md=552b0ba753df4c738843913fb3eb8312).
 
 On first launch, `centre.sh` runs the guided bootstrap automatically. It checks your system, prepares the local files Agentic OS needs, repairs missing dependencies when needed, and asks the one-time setup questions.
 
@@ -39,6 +37,7 @@ centre
 That's it. The `centre` command reuses the saved launcher state, repairs missing bootstrap files silently when needed, starts the Next.js dev server, and opens `http://localhost:3000` in your browser.
 
 `install.sh` and `setup.sh` still exist for manual maintenance:
+
 - `bash scripts/install.sh` runs the guided installer directly.
 - `bash scripts/install.sh --repair` repairs only the local bootstrap files.
 - `bash scripts/setup.sh` refreshes dependency checks without launching the UI.
@@ -63,35 +62,35 @@ Agentic OS is built on three layers:
 
 ## Core Skills (always installed)
 
-| Skill | What it does |
-|-------|-------------|
-| `meta-skill-creator` | Build custom skills for your business |
-| `meta-wrap-up` | End-of-session memory and learning capture |
-| `mkt-brand-voice` | Extract your brand voice from content or build it from scratch |
-| `mkt-positioning` | Find angles that make your offer stand out |
-| `mkt-icp` | Define your ideal customer so every skill speaks to them |
+| Skill                | What it does                                                   |
+| -------------------- | -------------------------------------------------------------- |
+| `meta-skill-creator` | Build custom skills for your business                          |
+| `meta-wrap-up`       | End-of-session memory and learning capture                     |
+| `mkt-brand-voice`    | Extract your brand voice from content or build it from scratch |
+| `mkt-positioning`    | Find angles that make your offer stand out                     |
+| `mkt-icp`            | Define your ideal customer so every skill speaks to them       |
 
 ---
 
 ## Optional Skills
 
-| Skill | What it does | API key needed |
-|-------|-------------|----------------|
-| `tool-humanizer` | Strip AI patterns from any output | -- |
-| `tool-firecrawl-scraper` | Scrape JS-heavy websites | `FIRECRAWL_API_KEY` |
-| `tool-youtube` | Pull YouTube transcripts and channel listings | `YOUTUBE_API_KEY` (channel mode only) |
-| `str-trending-research` | Research trending topics across Reddit, X, and the web | `OPENAI_API_KEY` + `XAI_API_KEY` |
-| `mkt-copywriting` | Sales copy with 7-dimension scoring | -- |
-| `mkt-content-repurposing` | Turn one piece of content into posts for 8 platforms | -- |
-| `mkt-ugc-scripts` | Short-form video scripts with hook library | -- |
-| `viz-excalidraw-diagram` | Architecture and workflow diagrams | -- |
-| `viz-nano-banana` | AI image generation in 5 visual styles | `GEMINI_API_KEY` |
-| `viz-ugc-heygen` | AI avatar videos via HeyGen | `HEYGEN_API_KEY` |
-| `str-ai-seo` | Optimize content for AI search engines and LLM citations | -- |
-| `viz-interface-design` | Design dashboards, admin panels, and SaaS UIs | -- |
-| `ops-cron` | Schedule recurring Claude Code tasks | -- |
-| `tool-stitch` | Fetch UI designs from Google Stitch projects | gcloud auth |
-| `viz-stitch-design` | Design and iterate on UI screens with Google Stitch | gcloud auth |
+| Skill                     | What it does                                             | API key needed                        |
+| ------------------------- | -------------------------------------------------------- | ------------------------------------- |
+| `tool-humanizer`          | Strip AI patterns from any output                        | --                                    |
+| `tool-firecrawl-scraper`  | Scrape JS-heavy websites                                 | `FIRECRAWL_API_KEY`                   |
+| `tool-youtube`            | Pull YouTube transcripts and channel listings            | `YOUTUBE_API_KEY` (channel mode only) |
+| `str-trending-research`   | Research trending topics across Reddit, X, and the web   | `OPENAI_API_KEY` + `XAI_API_KEY`      |
+| `mkt-copywriting`         | Sales copy with 7-dimension scoring                      | --                                    |
+| `mkt-content-repurposing` | Turn one piece of content into posts for 8 platforms     | --                                    |
+| `mkt-ugc-scripts`         | Short-form video scripts with hook library               | --                                    |
+| `viz-excalidraw-diagram`  | Architecture and workflow diagrams                       | --                                    |
+| `viz-nano-banana`         | AI image generation in 5 visual styles                   | `GEMINI_API_KEY`                      |
+| `viz-ugc-heygen`          | AI avatar videos via HeyGen                              | `HEYGEN_API_KEY`                      |
+| `str-ai-seo`              | Optimize content for AI search engines and LLM citations | --                                    |
+| `viz-interface-design`    | Design dashboards, admin panels, and SaaS UIs            | --                                    |
+| `ops-cron`                | Schedule recurring Claude Code tasks                     | --                                    |
+| `tool-stitch`             | Fetch UI designs from Google Stitch projects             | gcloud auth                           |
+| `viz-stitch-design`       | Design and iterate on UI screens with Google Stitch      | gcloud auth                           |
 
 ---
 
@@ -100,6 +99,7 @@ Agentic OS is built on three layers:
 GSD is a project management framework for Claude Code. It's a separate install (not bundled with Agentic OS) that adds structured planning, execution, and verification for complex multi-step projects.
 
 **Install GSD:**
+
 ```bash
 npx get-shit-done-cc@latest
 ```
@@ -108,18 +108,18 @@ Use it when you're building something with multiple phases -- a product launch, 
 
 **Key commands:**
 
-| Command | What it does |
-|---------|-------------|
-| `/gsd:new-project` | Start a new project with deep context gathering |
-| `/gsd:plan-phase` | Plan a phase with research, task breakdown, and verification |
-| `/gsd:execute-phase` | Execute a plan with atomic commits and state tracking |
-| `/gsd:progress` | Check where you are and what's next |
-| `/gsd:debug` | Systematic debugging with persistent state |
-| `/gsd:quick` | Quick task with GSD guarantees (commits, tracking) |
-| `/gsd:verify-work` | Validate features through conversational testing |
-| `/gsd:pause-work` | Save context for resuming later |
-| `/gsd:resume-work` | Pick up where you left off |
-| `/gsd:help` | See all available commands |
+| Command              | What it does                                                 |
+| -------------------- | ------------------------------------------------------------ |
+| `/gsd:new-project`   | Start a new project with deep context gathering              |
+| `/gsd:plan-phase`    | Plan a phase with research, task breakdown, and verification |
+| `/gsd:execute-phase` | Execute a plan with atomic commits and state tracking        |
+| `/gsd:progress`      | Check where you are and what's next                          |
+| `/gsd:debug`         | Systematic debugging with persistent state                   |
+| `/gsd:quick`         | Quick task with GSD guarantees (commits, tracking)           |
+| `/gsd:verify-work`   | Validate features through conversational testing             |
+| `/gsd:pause-work`    | Save context for resuming later                              |
+| `/gsd:resume-work`   | Pick up where you left off                                   |
+| `/gsd:help`          | See all available commands                                   |
 
 GSD and Agentic OS complement each other. Agentic OS handles brand context and skill-driven content production. GSD handles structured project execution when you're building something with phases and milestones.
 
@@ -148,13 +148,6 @@ This pulls the latest changes from upstream -- new skills, improved methodologie
 If you've customised any skills (via feedback, Rules additions, or direct edits), the update script detects this and shows you a diff for each changed skill. You choose per skill: accept our upstream changes, or keep your version. Either way, your version is backed up.
 
 If new skills are available, the script tells you what was added and how to install them.
-
-**If the update fails with an authentication error**, the access token has been rotated. Grab the latest token from the [Agentic Academy classroom](https://www.skool.com/scrapes/classroom/d1cfafed?md=552b0ba753df4c738843913fb3eb8312) and update your remote:
-
-```bash
-git remote set-url origin https://<NEW-TOKEN>@github.com/simonc602/agentic-os.git
-bash scripts/update.sh
-```
 
 ---
 
@@ -187,11 +180,13 @@ Run tasks automatically through a managed runtime shared by the Command Centre a
 ### Choose the host
 
 **Command Centre UI**
+
 - The scheduler runs in-process while the Command Centre server is running
 - It stops with the server
 - It always starts the queue watcher, but only schedules jobs if it wins the leader lock
 
 **CLI daemon**
+
 - Use this when you want scheduling to continue while the UI is closed
 - Start and stop it manually
 - It writes PID, lock, heartbeat, and logs to `.command-centre/`
@@ -199,6 +194,7 @@ Run tasks automatically through a managed runtime shared by the Command Centre a
 ### Manage the daemon
 
 **Mac/Linux**
+
 ```bash
 bash scripts/start-crons.sh
 bash scripts/status-crons.sh
@@ -207,6 +203,7 @@ bash scripts/stop-crons.sh
 ```
 
 **Windows (PowerShell)**
+
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\start-crons.ps1
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts\status-crons.ps1
@@ -242,20 +239,20 @@ Read CLAUDE.md for system context.
 
 Task: [Your task here]
 
-Save output to: projects/[folder]/{today's date}_[name].md
+Save output to: projects/[folder]/{today's date}\_[name].md
 ```
 
 Or just ask Claude: "schedule a job to [do something] every morning" -- the `ops-cron` skill handles the rest.
 
 ### Schedule options
 
-| Setting | Examples |
-|---------|----------|
-| **Exact time** | `time: "09:00"` or `time: "09:00,13:00,17:00"` |
-| **Every N minutes** | `time: "every_5m"`, `"every_10m"`, `"every_30m"` |
-| **Every N hours** | `time: "every_1h"`, `"every_2h"`, `"every_4h"` |
-| **Days** | `days: "daily"`, `"weekdays"`, `"weekends"`, `"mon,wed,fri"` |
-| **Model** | `model: "haiku"` (cheap), `"sonnet"` (default), `"opus"` (powerful) |
+| Setting             | Examples                                                            |
+| ------------------- | ------------------------------------------------------------------- |
+| **Exact time**      | `time: "09:00"` or `time: "09:00,13:00,17:00"`                      |
+| **Every N minutes** | `time: "every_5m"`, `"every_10m"`, `"every_30m"`                    |
+| **Every N hours**   | `time: "every_1h"`, `"every_2h"`, `"every_4h"`                      |
+| **Days**            | `days: "daily"`, `"weekdays"`, `"weekends"`, `"mon,wed,fri"`        |
+| **Model**           | `model: "haiku"` (cheap), `"sonnet"` (default), `"opus"` (powerful) |
 
 Full reference: `cron/templates/schedule-reference.md`
 
@@ -271,17 +268,17 @@ Full reference: `cron/templates/schedule-reference.md`
 
 ### Manage jobs
 
-| Action | How |
-|--------|-----|
-| **Pause a job** | Set `active: "false"` in the job file |
-| **Resume a job** | Set `active: "true"` in the job file |
-| **Run a job now** | `bash scripts/run-job.sh {job-name}` on macOS/Linux or `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\run-job.ps1 {job-name}` on Windows |
-| **Check logs** | `cat cron/logs/{job-name}.log` |
-| **List all jobs** | `ls cron/jobs/` or ask Claude "what's scheduled?" |
-| **Start the daemon** | `bash scripts/start-crons.sh` or `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\start-crons.ps1` |
-| **Stop the daemon** | `bash scripts/stop-crons.sh` or `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\stop-crons.ps1` |
-| **Check runtime status** | `bash scripts/status-crons.sh` or `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\status-crons.ps1` |
-| **Show daemon logs** | `bash scripts/logs-crons.sh` or `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\logs-crons.ps1` |
+| Action                   | How                                                                                                                                                    |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Pause a job**          | Set `active: "false"` in the job file                                                                                                                  |
+| **Resume a job**         | Set `active: "true"` in the job file                                                                                                                   |
+| **Run a job now**        | `bash scripts/run-job.sh {job-name}` on macOS/Linux or `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\run-job.ps1 {job-name}` on Windows |
+| **Check logs**           | `cat cron/logs/{job-name}.log`                                                                                                                         |
+| **List all jobs**        | `ls cron/jobs/` or ask Claude "what's scheduled?"                                                                                                      |
+| **Start the daemon**     | `bash scripts/start-crons.sh` or `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\start-crons.ps1`                                         |
+| **Stop the daemon**      | `bash scripts/stop-crons.sh` or `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\stop-crons.ps1`                                           |
+| **Check runtime status** | `bash scripts/status-crons.sh` or `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\status-crons.ps1`                                       |
+| **Show daemon logs**     | `bash scripts/logs-crons.sh` or `powershell -NoProfile -ExecutionPolicy Bypass -File scripts\logs-crons.ps1`                                           |
 
 Stopping the daemon only stops automatic scheduling. Your job files in `cron/jobs/` are never deleted.
 
@@ -391,11 +388,3 @@ These are yours and are never overwritten by updates:
 - **.env** -- your API keys (gitignored, never leaves your machine)
 
 ---
-
-## Need Help?
-
-Head to the Agentic Academy Skool community. Post your question and the team or another member will help you out.
-
----
-
-Built by Simon Scrapes @ Agentic Academy

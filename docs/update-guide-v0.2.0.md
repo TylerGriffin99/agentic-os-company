@@ -74,6 +74,7 @@ If you do have one:
 1. **Figure out which project it belongs to.** Open `.planning/PROJECT.md` — it'll have the project name. Find the matching folder in `projects/briefs/` if there is one (there may not be - in which case - you can create one). For example, if the project is "website-rebuild", the folder is `projects/briefs/website-rebuild/`.
 
 2. **Move the `.planning/` folder into that project folder:**
+
    ```
    Before:
    agentic-os/
@@ -87,6 +88,7 @@ If you do have one:
    ```
 
    On Mac/Linux you can do this in the terminal if easier (moves the folder):
+
    ```bash
    mv .planning projects/briefs/YOUR-PROJECT-NAME/.planning
    ```
@@ -109,13 +111,14 @@ After this, there should be no `.planning/` folder at the root of your install.
 Rather than trying to merge all the changes into your existing install (which will cause conflicts because of the CLAUDE.md restructure), the cleanest path is to start fresh and bring your data back in.
 
 1. **Rename your current install** so it's out of the way but still accessible:
+
    ```bash
    mv agentic-os agentic-os-backup
    ```
 
 2. **Clone the latest version:**
    ```bash
-   git clone https://YOUR-TOKEN@github.com/simonc602/agentic-os.git
+   git clone https://<git>/agentic-os-company.git
    ```
    Use the same access token you used originally. If it's expired, grab the latest one from the Skool classroom.
 
@@ -193,6 +196,7 @@ That's it. It reuses the saved launcher state, repairs missing bootstrap files s
 On Windows, the guided install can write `centre` into both Windows PowerShell and PowerShell 7 profiles. Open a new PowerShell window after the installer finishes. `bash scripts/setup.sh` does not install the launcher.
 
 If the `centre` command isn't recognised, it usually means your shell has not picked up the new shortcut yet. Try one of these:
+
 - Close and reopen your terminal
 - Run `source ~/.zshrc` (Mac), `source ~/.bashrc` (Linux), or `. $PROFILE` (Windows PowerShell) to reload your shell config
 
@@ -224,6 +228,7 @@ claude
 ```
 
 A healthy first session should:
+
 - Start silently (no long greeting or checklist — that's the new behaviour)
 - Pick up your memory and open threads when you say hello
 - Have access to all your brand context and skills
@@ -263,6 +268,7 @@ The notification hooks that connect Claude to the Command Centre used to run via
 ### New hooks
 
 Several new hooks were added:
+
 - **Session sync** — keeps the Command Centre in sync with your Claude sessions
 - **Branch guard** — gently reminds you to use feature branches for code changes (advisory only, never blocks you)
 - **GSD status line** — shows project progress in your terminal
@@ -274,6 +280,7 @@ The `.claude/settings.json` file has new entries for all the hooks above, plus a
 ### GSD project structure
 
 Old (one project at a time):
+
 ```
 agentic-os/
 ├── .planning/                    <-- shared, one at a time
@@ -281,6 +288,7 @@ agentic-os/
 ```
 
 New (multiple projects in parallel):
+
 ```
 agentic-os/
 └── projects/briefs/my-project/

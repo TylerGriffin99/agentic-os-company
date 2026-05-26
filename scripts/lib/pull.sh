@@ -40,7 +40,7 @@ if $MERGE_FAILED; then
         printf "     ${CYAN}https://www.skool.com/scrapes/classroom/d1cfafed?md=552b0ba753df4c738843913fb3eb8312${NC}\n"
         echo ""
         echo "  2. Update your remote URL:"
-        printf "     ${BOLD}git remote set-url origin https://<NEW-TOKEN>@github.com/simonc602/agentic-os.git${NC}\n"
+        printf "     ${BOLD}git remote set-url origin https://TylerGriffin99/agentic-os-company.git${NC}\n"
         echo ""
         echo "  3. Run this script again:"
         printf "     ${BOLD}bash scripts/update.sh${NC}\n"

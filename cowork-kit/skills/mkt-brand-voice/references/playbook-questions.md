@@ -1,4 +1,4 @@
-# Agentic Academy Brand Voice Playbook
+# Company Brain Brand Voice Playbook
 
 Read this when running **Mode 3: Build → Playbook** (the deep opt-in variant).
 Use it when the user is starting from zero, has no usable content samples, and
@@ -17,7 +17,7 @@ A brand voice that actually sounds like a person — not a template — is rough
 Ask personality questions first. Strategy questions lean on personality answers,
 not the other way around.
 
-**Ground rule for this flow:** every answer is raw material. You are *deriving*
+**Ground rule for this flow:** every answer is raw material. You are _deriving_
 the voice profile from what the user says. You are not pattern-matching their
 answers onto pre-written archetypes. See the Synthesis Instructions at the
 bottom.
@@ -27,28 +27,31 @@ bottom.
 ## Step 1 — Personality (80%)
 
 Ask these five questions one at a time. After each, offer:
-*"Optional: paste an example of you saying something like this — a post, a
-message, a line from a call. It goes straight into your samples."*
+_"Optional: paste an example of you saying something like this — a post, a
+message, a line from a call. It goes straight into your samples."_
 
 Anything they paste here is captured verbatim for `samples.md` during synthesis.
 
 ### Q1. Anti-Corporate Stance
+
 **Question:** "What annoys you most about how business is typically done in
 your industry? What do people in your space say that makes you roll your eyes?"
 
-*Example answers from the playbook:*
+_Example answers from the playbook:_
+
 - "I hate how everyone talks about 'synergy' and 'leveraging opportunities' when
   they really mean 'let's actually get stuff done.'"
 - "Everyone is selling the dream but nobody's showing the actual work."
 - "The whole 'thought leadership' thing — it's just recycled LinkedIn takes in a
   blazer."
 
-*What this feeds:* Their **never list**, their anti-patterns, and the edge that
+_What this feeds:_ Their **never list**, their anti-patterns, and the edge that
 makes them sound different from the crowd. Whatever they say here maps directly
 to the "Words/Phrases to Avoid" section and shapes the opening of their voice
 summary.
 
 ### Q2. Problem-Solving Style (multiple choice)
+
 **Question:** "When someone comes to you with a problem, how do you naturally
 respond? Pick the closest — or describe your own."
 
@@ -57,10 +60,11 @@ respond? Pick the closest — or describe your own."
 - **Experiential** — "I've been there too, here's what worked"
 - **Diagnostic** — "Let me ask you a few questions first"
 
-*What this feeds:* Their relationship stance — guide, teacher, peer, consultant,
+_What this feeds:_ Their relationship stance — guide, teacher, peer, consultant,
 challenger. This shapes sentence structure and POV ("we" vs "you" vs "I").
 
 ### Q3. Communication Preference (multiple choice)
+
 **Question:** "In real conversations, are you more…"
 
 - **Direct and blunt** — cut through the BS
@@ -68,31 +72,35 @@ challenger. This shapes sentence structure and POV ("we" vs "you" vs "I").
 - **Story-driven** — explain through examples
 - **Question-focused** — get people thinking
 
-*What this feeds:* Tone spectrum position (warm ↔ direct, reserved ↔ bold) and
+_What this feeds:_ Tone spectrum position (warm ↔ direct, reserved ↔ bold) and
 rhythm patterns.
 
 ### Q4. Professional Background / Origin Story
+
 **Question:** "What's the most interesting part of your journey that shaped how
 you see your industry? Not the LinkedIn version — the real one."
 
-*Example answers from the playbook:*
+_Example answers from the playbook:_
+
 - "I studied engineering but never worked as one."
 - "I was the customer service rep who saw what really frustrated clients."
 - "I built my business while working corporate and hated the rules."
 
-*What this feeds:* Core energy, credibility source, recurring themes. Often
+_What this feeds:_ Core energy, credibility source, recurring themes. Often
 surfaces the signature phrases they don't realise they use.
 
 ### Q5. "Why This Matters" Moment
+
 **Question:** "What drives you personally about the work you do? Not the mission
 statement — the real reason, the one you'd tell a friend at a bar."
 
-*Example answers from the playbook:*
+_Example answers from the playbook:_
+
 - "Freedom to work how I want."
 - "Helping people escape the busy work that's killing their passion."
 - "Proving there's a better way than what everyone else is doing."
 
-*What this feeds:* The **opening line of the voice summary** in `voice-profile.md`.
+_What this feeds:_ The **opening line of the voice summary** in `voice-profile.md`.
 This is the emotional anchor — every other section should be consistent with it.
 
 ---
@@ -103,21 +111,24 @@ Four questions. **Skip Q1 if `brand_context/icp.md` already exists. Skip Q2 if
 `brand_context/positioning.md` already exists** — same skip rule as
 `build-questions.md`.
 
-### Q1. Ideal Client Pain *(skip if icp.md exists)*
+### Q1. Ideal Client Pain _(skip if icp.md exists)_
+
 **Question:** "Who are you talking to, and what's the exact pain they're feeling
 right now that makes them open your email or click your post? Be specific —
 not 'entrepreneurs', but what kind, at what stage, stuck on what?"
 
-*What this feeds:* Audience targeting, confidence zones, vocabulary level.
+_What this feeds:_ Audience targeting, confidence zones, vocabulary level.
 
-### Q2. Audience Personality Fit *(skip if positioning.md exists)*
+### Q2. Audience Personality Fit _(skip if positioning.md exists)_
+
 **Question:** "What tone resonates with your audience? What kind of voice do
 they already trust? What would immediately turn them off?"
 
-*What this feeds:* Tone spectrum calibration against the audience, not just
+_What this feeds:_ Tone spectrum calibration against the audience, not just
 against the user's own instincts.
 
 ### Q3. Content Comfort Zone
+
 **Question:** "When you're creating content, you feel most authentic when you're…"
 
 - Sharing personal stories and lessons
@@ -126,10 +137,11 @@ against the user's own instincts.
 - Providing step-by-step solutions
 - Something else — describe it
 
-*What this feeds:* **Content pillars** and the natural voice mode they should
+_What this feeds:_ **Content pillars** and the natural voice mode they should
 default to on any platform.
 
 ### Q4. Natural Language Patterns
+
 **Question:** "Think about how you actually talk. Do you…"
 
 - Use "we/us" or "you/I"?
@@ -138,7 +150,7 @@ default to on any platform.
 - Tell stories or stick to facts?
 - Use any words or phrases so often that friends tease you about them?
 
-*What this feeds:* POV, vocabulary level, rhythm patterns, and — critically —
+_What this feeds:_ POV, vocabulary level, rhythm patterns, and — critically —
 their **signature phrases** for `voice-profile.md` and `samples.md`.
 
 ---
@@ -149,16 +161,19 @@ This is non-negotiable for Playbook mode. The whole point of going deep is to
 ground the profile in real language.
 
 Ask:
+
 > "Last thing — can you give me 3-5 real sentences or phrases you actually use?
 > These can be things you say to clients, lines from your own posts, bits from
 > emails, or even stuff you catch yourself saying in calls. The more real, the
 > better. Three options:
+>
 > 1. **Paste them here** — anything from Slack, emails, drafts, notes
 > 2. **Link me to posts** — I'll pull the content (WebFetch/Firecrawl)
 > 3. **Skip** — I'll build from your answers above alone, but the profile will
 >    be less grounded"
 
 **Handling each path:**
+
 - **Pasted examples** → capture verbatim; these feed `samples.md` directly with
   source noted as "user-provided during playbook interview".
 - **Links** → use WebFetch first, fall back to `tool-firecrawl-scraper` if the
@@ -167,7 +182,7 @@ Ask:
   flag `samples.md` as "light — enrich later" in the output summary.
 
 Anything they pasted about signature phrases, anti-corporate rants, or "why this
-matters" in Step 1 *also* flows into `samples.md`. Don't make them repeat
+matters" in Step 1 _also_ flows into `samples.md`. Don't make them repeat
 themselves.
 
 ---
@@ -187,13 +202,13 @@ Simplifier", "Collaborative Efficiency Expert", or "Diplomatic Truth-Teller"
 unless the user's answers genuinely earn them.** If the answers don't clearly
 support a label, invent one that does.
 
-Check before writing each characteristic: *"Which specific answer made me pick
-this label?"* If you can't answer that in one sentence, the label is wrong.
+Check before writing each characteristic: _"Which specific answer made me pick
+this label?"_ If you can't answer that in one sentence, the label is wrong.
 
 ### Rule 2 — Use the example brief as structural reference only
 
 The playbook's example brief (if the user has seen one) shows what the output
-sections *look like* when filled out well: characteristics, signature phrases,
+sections _look like_ when filled out well: characteristics, signature phrases,
 never list, platform-specific guidelines, content pillars. It is not a fill-in-
 the-blanks template. Every value — every phrase, every rule, every example —
 comes from the user's answers and pasted samples. Zero verbatim copying from
@@ -228,8 +243,8 @@ something they said they genuinely care about (pulled from Q5), using at least
 two of their signature phrases from Q4 or Step 3 examples. This is the proof
 that the profile actually captured their voice, not a generic version of it.
 
-Ask: *"Does this sound like you when you're not overthinking it? Specifically
-— does the way it opens match how you'd actually start that thought?"*
+Ask: _"Does this sound like you when you're not overthinking it? Specifically
+— does the way it opens match how you'd actually start that thought?"_
 
 Same 3-round cap. If still off after round 3, save the current version and
 offer to refine over time.

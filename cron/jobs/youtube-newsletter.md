@@ -1,27 +1,28 @@
 ---
 name: YouTube Newsletter
-time: '09:00'
+time: "09:00"
 days: daily
-active: 'false'
+active: "false"
 model: opus
 timeout: 15m
 notify: on_finish
 description: >-
-  Check @simonscrapes for new videos and generate a newsletter from the
+  Check @username for new videos and generate a newsletter from the
   transcript
 ---
+
 You are running as a scheduled cron job for Agentic OS.
 
 ## Task
 
-Check the YouTube channel @simonscrapes for any new video uploads. If a new video is found, generate a newsletter from the transcript and save it.
+Check the YouTube channel @username for any new video uploads. If a new video is found, generate a newsletter from the transcript and save it.
 
 ## Step 1: Check for New Videos
 
 Run the YouTube digest script with the seen file to detect only new uploads:
 
 ```bash
-uv run .claude/skills/tool-youtube/scripts/digest.py --channels "@simonscrapes" --hours 48 --max-videos 3 --seen-file cron/status/youtube-newsletter-seen.txt
+uv run .claude/skills/tool-youtube/scripts/digest.py --channels "@username" --hours 48 --max-videos 3 --seen-file cron/status/youtube-newsletter-seen.txt
 ```
 
 If the output shows no new videos, output `[SILENT]` and stop. No newsletter needed.
@@ -47,6 +48,7 @@ Write a newsletter from the transcript following this structure:
 5. **Watch link** — link to the full video at the end.
 
 ### Voice rules
+
 - Write like the speaker talks — direct, practical, no corporate language
 - Read `brand_context/voice-profile.md` for tone guidance
 - Use "you" and "your" — this is for the reader
@@ -54,6 +56,7 @@ Write a newsletter from the transcript following this structure:
 - Keep paragraphs short. 2-3 sentences max.
 
 ### Format
+
 - Title: the video title (keep it as-is)
 - Include the YouTube link at the top and bottom
 - Use `---` horizontal rules to separate major sections

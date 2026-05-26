@@ -2,9 +2,6 @@
 """
 last30days - Research a topic from the last 30 days on Reddit + X.
 
-Adapted from https://github.com/Ronnie-Nutrition/last30days-skill
-Modified for Agentic OS by Simon Scrapes @ Agentic Academy
-
 Usage:
     python3 last30days.py <topic> [options]
 

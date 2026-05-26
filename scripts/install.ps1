@@ -179,8 +179,8 @@ function Run-DependencySetup {
 function Setup-GitHubRepo {
     $script:GitHubDecision = "unknown"
 
-    $upstreamOwner = "simonc602"
-    $upstreamRepo = "agentic-os"
+    $upstreamOwner = "TylerGriffin99"
+    $upstreamRepo = "agentic-os-company"
     $originUrl = ""
     $isUpstream = $false
 

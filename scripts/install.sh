@@ -197,8 +197,8 @@ run_dependency_setup() {
 }
 
 setup_github_repo() {
-    local upstream_owner="simonc602"
-    local upstream_repo="agentic-os"
+    local upstream_owner="TylerGriffin99"
+    local upstream_repo="agentic-os-company"
     local origin_url=""
     local is_upstream=0
 
