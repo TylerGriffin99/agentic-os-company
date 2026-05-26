@@ -7,12 +7,33 @@
       "notes": ""
     }
   ],
-  "core_skills": ["meta-skill-creator", "meta-wrap-up", "mkt-brand-voice", "mkt-positioning", "mkt-icp"],
+  "core_skills": [
+    "meta-memory-write",
+    "meta-skill-creator",
+    "meta-synthesize-locals",
+    "meta-wrap-up",
+    "mkt-brand-voice",
+    "ops-cron",
+    "ops-github-sync",
+    "tool-humanizer"
+  ],
   "skills": {
-    "tool-humanizer": {
-      "category": "utility",
+    "mkt-positioning": {
+      "category": "execution",
       "version": "1.0.0",
-      "description": "De-AI text, match brand voice patterns",
+      "description": "Differentiation angles, hooks, and USP messaging",
+      "story": { "text": "", "video": "" },
+      "changelog": [
+        { "version": "1.0.0", "summary": "Initial release" }
+      ],
+      "requires_services": [],
+      "dependencies": [],
+      "mcp_servers": []
+    },
+    "mkt-icp": {
+      "category": "execution",
+      "version": "1.0.0",
+      "description": "Ideal customer profile — who to target and why they buy",
       "story": { "text": "", "video": "" },
       "changelog": [
         { "version": "1.0.0", "summary": "Initial release" }
@@ -177,17 +198,5 @@
       "dependencies": ["tool-stitch"],
       "mcp_servers": ["stitch"]
     },
-    "ops-cron": {
-      "category": "operations",
-      "version": "1.0.0",
-      "description": "Schedule recurring Claude Code tasks with the managed cron runtime",
-      "story": { "text": "", "video": "" },
-      "changelog": [
-        { "version": "1.0.0", "summary": "Initial release" }
-      ],
-      "requires_services": [],
-      "dependencies": [],
-      "mcp_servers": []
-    }
   }
 }
