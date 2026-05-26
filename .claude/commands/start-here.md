@@ -371,9 +371,36 @@ Say:
 1. "What is your name and job title?"
 2. "Which team or department are you in?"
 3. "How do you prefer AI responses? (e.g. 'short and direct', 'detailed with reasoning', 'always use bullet points')"
-4. "What external systems do you work with regularly? (e.g. Salesforce, SharePoint, Excel — used to suggest data connectors)"
+4. "What external systems do you work with regularly? (e.g. Salesforce, SharePoint, Gmail, Excel — used to suggest data connectors)"
 
-### Step E3: Write USER.md
+### Step E3: Gmail Voice Extraction (Optional)
+
+After Q4, ask:
+
+> "Do you want me to pull your writing style from your sent emails? I can connect to Gmail
+> now and analyse your last 50–100 sent messages to build a personal voice profile — takes
+> about 30 seconds. This helps me match how *you* write, not just how the company writes."
+
+**If yes:**
+1. Authenticate via the Gmail MCP (`mcp__claude_ai_Gmail__authenticate`)
+2. Fetch the last 100 sent emails (exclude auto-replies, calendar notifications, and one-liners under 10 words)
+3. Analyse for:
+   - Sentence length and rhythm
+   - Formality level (casual vs professional)
+   - How they open and close messages
+   - Vocabulary patterns and favourite phrases
+   - Use of bullet points vs prose
+   - Punctuation habits (e.g. em-dashes, ellipses, exclamation marks)
+4. Write a `## Personal Voice` section into `USER.md` (see E4 below)
+5. Confirm: "Got it — I've built your personal voice profile from {N} emails."
+
+**If no:** skip silently. They can do this later by asking "build my personal voice profile".
+
+**Platform note:** If the user mentions they'll work in the Claude.ai web app or cowork environment,
+note once at the end: "If you work in Claude.ai as well, you'll need to reconnect Gmail there — connectors
+are separate per environment."
+
+### Step E4: Write USER.md
 
 Write `context/USER.md` (gitignored — stays on this machine only):
 
@@ -399,9 +426,19 @@ Write `context/USER.md` (gitignored — stays on this machine only):
 
 ## Notes
 -
+
+## Personal Voice
+{Include only if Gmail extraction ran. Example:}
+- Tone: direct and warm — gets to the point but closes with care
+- Sentence length: short to medium, rarely compound
+- Opens with: first name or straight into the ask
+- Closes with: "Thanks," or "Let me know" — rarely formal sign-offs
+- Vocabulary: plain, no jargon, occasional dry humour
+- Formatting: prose over bullets in personal comms, bullets for updates
+- Patterns: uses em-dashes, rarely exclamation marks
 ```
 
-### Step E4: Surface Connector Templates
+### Step E5: Surface Connector Templates
 
 If Q4 named any external systems, check `.claude/skills/` for matching connectors:
 
@@ -410,11 +447,12 @@ If Q4 named any external systems, check `.claude/skills/` for matching connector
 | Salesforce, CRM | `connector-salesforce` |
 | SharePoint, OneDrive, Teams | `connector-m365-docs` |
 | Outlook, email | `connector-m365-email` |
+| Gmail | Already handled in E3 — skip |
 | Excel | `connector-excel` |
 
-For each match found: "I see you use {system}. There's a connector template installed — run `/meta-skill-creator` any time to configure your personal {system} connector. It will fetch relevant data automatically when you need it."
+For each match found (excluding Gmail if already handled): "I see you use {system}. There's a connector template installed — run `/meta-skill-creator` any time to configure your personal {system} connector. It will fetch relevant data automatically when you need it."
 
-### Step E5: Create First Memory Entry
+### Step E6: Create First Memory Entry
 
 Write `context/memory/{YYYY-MM-DD}.md`:
 
@@ -426,12 +464,13 @@ Employee onboarding — personal workspace configured
 
 ### Deliverables
 - `context/USER.md` — personal profile
+{- `context/USER.md` § Personal Voice — extracted from Gmail (if ran)}
 
 ### Open threads
-{list any connector suggestions from Step E4, or omit if none}
+{list any connector suggestions from Step E5, or omit if none}
 ```
 
-### Step E6: How It Works Primer
+### Step E7: How It Works Primer
 
 Give a brief orientation — employees don't need the full manager primer:
 
@@ -445,7 +484,7 @@ Give a brief orientation — employees don't need the full manager primer:
 > When you're done for the day, say so and I'll save everything automatically. Next session I pick
 > up where we left off. See [docs/cheat-sheet.md](docs/cheat-sheet.md) for quick reference."
 
-### Step E7: First Recommendation
+### Step E8: First Recommendation
 
 End with ONE recommendation based on their role and team:
 "Given you're on [team] handling [role], I'd start with [skill] — [reason]."
