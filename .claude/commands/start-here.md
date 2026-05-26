@@ -1,101 +1,68 @@
 # /start-here
 
-The onboarding entry point for first-time users.
-
-## Guard
-
-Check whether `brand_context/` contains populated `.md` files.
-
-- **Files exist** → respond "You're already set up. Just tell me what you're working on." and **stop**. Do not continue to any steps below.
-- **No files** → continue to First-Run Mode below.
-
-**Skill selection check:** Read `.claude/skills/_catalog/installed.json`. If `selection_pending` is `true` (or the field is missing), the user hasn't chosen their skills yet. Run Step 8 (Skill Selection) before finishing.
-
-## Always (both modes)
-
-Create today's memory file per CLAUDE.md's **Daily Memory** section:
-
-- If `context/memory/{YYYY-MM-DD}.md` doesn't exist → create it with a `## Session — {HH:MM}` header
-- If it already exists → append a new `## Session — {HH:MM}` block
-- Fill in `### Goal` once the user states what they're working on
+The onboarding entry point for first-time users — both the manager setting up the
+company layer and employees personalising their workspace.
 
 ---
 
-## First-Run Mode
+## Guard
 
-### Step 0: GitHub Backup Check
+Check `context/SETUP.md` and `context/USER.md`:
 
-**Run this every session (first-run AND returning), before anything else.**
+- **`SETUP.md` missing** → Manager first-run → go to **Manager Mode** below
+- **`SETUP.md` present, `USER.md` missing** → Employee first-run → go to **Employee Mode** below
+- **Both present** → already configured; respond "You're already set up. Just tell me what you're working on." and **stop**
 
-Check whether the user's data is backed up to their own GitHub repo:
+**Skill selection check (Manager mode only):** Read `.claude/skills/_catalog/installed.json`.
+If `selection_pending` is `true` (or field is missing), the user hasn't chosen their skills yet.
+Jump to Step M8 (Skill Selection) before finishing.
 
-1. First, check `.env` for `IS_TEMPLATE_MAINTAINER=true`. If set, **skip this entire step** — the user owns the template repo and `origin` is already correct.
+---
+
+## Manager Mode
+
+Runs once — sets up the shared company layer that all employees will inherit.
+
+### Step M0: GitHub Backup Check
+
+**Run before anything else.**
+
+1. Check `.env` for `IS_TEMPLATE_MAINTAINER=true`. If set, **skip this entire step**.
 2. Run `git remote -v` and inspect the `origin` URL.
-3. If `origin` contains `TylerGriffin99/agentic-os-company` (the upstream template), the user hasn't set up their own repo yet.
-4. If there is no `origin` at all, same situation.
+3. If `origin` contains the upstream template repo or there is no `origin`, the user hasn't set up their own repo.
 
 **If not configured:**
 
-> "Before we get started — your brand data, client files, and project outputs all live locally right now. If anything happens to this machine, they're gone. Let's back them up to a private GitHub repo that only you can access."
+> Ask first: "Before we get started — your brand data, files, and project outputs all live locally right now. If anything happens to this machine, they're gone. Want to back them up to a private GitHub repo that only you can access?"
 
-Then guide them:
-
-- If `gh` CLI is available and authenticated: offer to create a private repo automatically (`gh repo create my-agentic-os --private --source=. --remote=origin`), rename the old origin to `upstream`, and push.
-- If `gh` is not available: give manual steps — create a private repo on GitHub, then run `git remote rename origin upstream && git remote add origin <their-url> && git push -u origin main`.
-- Reassure: "This is a **private** repo — only you can see it. Your brand voice, client data, and business content stay completely private."
+If yes, guide them:
+- `gh` CLI available and authenticated: offer to create a private repo automatically (`gh repo create my-agentic-os --private --source=. --remote=origin`), rename old origin to `upstream`, and push.
+- `gh` not available: give manual steps — create a private repo on GitHub, then `git remote rename origin upstream && git remote add origin <their-url> && git push -u origin main`.
+- Reassure: "This is a **private** repo — only you can see it."
 - After setup: "You're backed up. I'll remind you to push at the end of each session."
 
 **If already configured (origin is NOT the upstream):** skip silently.
 
-### Step 1: Project Scan + Intro
+### Step M1: Explain What's Happening
 
-Check what exists:
+Say: "I'll help you configure the company layer. This runs once — employees will inherit
+everything you set up here. I'll ask a few questions about the business, build the brand
+foundation, then set up your personal profile. Let's start with the company."
 
-- `brand_context/` files (which ones, which are missing)
-- `context/USER.md` (populated or template?)
-- `.claude/skills/` (which skills are installed)
+### Step M2: Company Identity Questions (ONE AT A TIME)
 
-**Detect if this is a client workspace:** Check if the current working directory is inside a `clients/` folder (path contains `/clients/`). If so, this is a client workspace — read the client `AGENTS.md` to get the client name from the `# Client: {name}` header.
+Ask these one at a time. Wait for each answer before asking the next.
 
-**Client workspace intro (if inside clients/):**
-Explain the multi-client setup and frame this as building brand context for this specific client:
+**Q1:** "What is the company name?"
 
-- You're inside **{client name}**'s workspace — one of several client folders managed by the parent Agentic OS
-- The parent Agentic OS at the root holds all the shared skills, methodology, and scripts — edits there benefit every client
-- Each client folder (list any sibling folders under `clients/` if they exist) gets its own brand context, memory, and outputs — completely separate from each other
-- Right now we're setting up **{client name}**'s brand foundation so everything produced here matches their voice, positioning, and audience
-- We'll answer a few questions, then pick which skills to keep active for this client
+**Q2:** "What does the business do and for whom — give me the one-sentence version."
 
-**Standard intro (if NOT inside clients/):**
-Read README.md and give the user a brief, genuine explanation of what they've set up:
+**Q3:** "Who's your ideal customer?"
+→ Skip if Q2 already described the customer clearly enough.
 
-- What Agentic OS does (business OS that learns their brand, gets sharper each session)
-- How it works in practice (answer a few questions → brand foundation → then you'll pick which skills to keep)
-- The learnings loop (feedback improves future output)
-- That skills can be built for any domain as needs grow
+**Q4:** "What makes you different from the alternatives?"
 
-Keep it conversational — 4-6 sentences max, not a feature dump. Don't list installed skills here — that happens in Step 8 after brand context is built, so skills can be framed for their specific business. End with the first question.
-
-### Step 2: Core Questions (ONE AT A TIME, SKIP IF ALREADY ANSWERED)
-
-Ask up to four questions sequentially. Wait for each answer before asking the next.
-Do NOT present all four at once.
-
-**Before each question, check if the user already provided the answer in a previous response.** People often cover multiple topics in one answer (e.g., describing their business AND their ideal customer together). If you already have enough information for a question, skip it and move to the next one. Acknowledge what you picked up so the user knows you were listening.
-
-**Question 1:**
-
-- Client workspace: "What does **{client name}**'s business do? Give me the one-sentence version."
-- Standard: "What does your business do? Give me the one-sentence version."
-  → Wait for answer.
-
-**Question 2:** "Who's your ideal customer — who do you help?"
-→ Skip if Q1 answer already described the customer clearly enough to build an ICP.
-
-**Question 3:** "What makes you different from the alternatives?"
-→ Wait for answer.
-
-**Question 4:** "How do you want to come across? Here are some common tones with examples:"
+**Q5:** "How do you want to come across? Here are some common tones with examples:"
 
 > **Direct** — gets to the point, no fluff. _"Here's what works. Do this, skip that."_
 > **Warm** — friendly, approachable, like talking to someone who genuinely cares. _"I've been there — let me show you what helped me."_
@@ -106,33 +73,33 @@ Do NOT present all four at once.
 
 "You can pick one, mix a couple, or describe it your own way."
 
-Then add one follow-up line:
+Then add: "If you want a more thorough voice extraction I can run you through our playbook
+(~10–15 min) — otherwise we'll keep it quick."
 
-> "If you're starting from zero and want a more thorough voice extraction, I can run you through our playbook in Step 5 (~10-15 min) — otherwise we'll keep it quick."
+→ Capture tone answer and a `deep_voice_flow` flag: `yes` if opted in, `no` if declined, `unset` if no preference.
 
-→ Wait for answer. Capture both the tone answer and a **deep_voice_flow** flag: `yes` if they opted in, `no` if they declined, `unset` if they didn't express a preference.
+**Q6:** "List 2–3 core values or principles the AI assistant should reflect."
 
-Capture all answers. You'll use them to build brand_context/.
+**Q7:** "What's your name?" (for `SETUP.md` attribution)
 
-### Step 3: Collect Brand Assets + URL Extraction
+### Step M3: Brand Assets + URL Extraction
 
-Ask: "Got a website, LinkedIn, YouTube, or any other links I should know about — both business and personal?"
+Ask: "Got a website, LinkedIn, YouTube, or any other links I should know about?"
 
 If yes:
-
 - Separate into business vs personal links and handles
 - Save all to `brand_context/assets.md` under the correct sections
-- Try WebFetch first to retrieve content from provided URLs for voice extraction
+- Try WebFetch first to retrieve content for voice extraction
 - If WebFetch fails (JS-heavy, bot-blocked), check `.env` for `FIRECRAWL_API_KEY`:
-  - **Key present** → use Firecrawl scrape + branding extraction (auto-discover logo, colors, fonts)
-  - **Key missing** → tell the user: "Your site needs a more powerful scraper to read properly. If you add a Firecrawl API key to your `.env` file, I can pull your brand assets (logo, colors, fonts) automatically. Free tier at firecrawl.dev — 500 credits/month. For now, I'll work with what I can access."
-- Extract 5-10 gold-standard sentences that represent their voice
+  - **Key present** → use Firecrawl scrape + branding extraction (auto-discover logo, colours, fonts)
+  - **Key missing** → tell the user: "Your site needs a more powerful scraper to read properly. Add a Firecrawl API key to `.env` — free tier at firecrawl.dev — 500 credits/month. For now I'll work with what I can access."
+- Extract 5–10 gold-standard sentences that represent their voice
 - Note what makes each sentence representative
-- If Firecrawl branding was used, report what was found vs what wasn't (see mkt-brand-voice Mode 4 for the format)
+- If Firecrawl branding was used, report what was found vs what wasn't
 
-If no: skip URL extraction, but still create `brand_context/assets.md` with empty fields so it's ready for later.
+If no: skip URL extraction but still create `brand_context/assets.md` with empty fields.
 
-### Step 3b: Environment Check
+### Step M3b: Environment Check
 
 Scan `.env.example` for all documented API keys. Check which are configured in `.env`.
 
@@ -140,74 +107,144 @@ If any keys are missing, mention them once (not as a blocker):
 
 > "A few optional integrations are available. You can add these to your `.env` file anytime:"
 >
-> - `FIRECRAWL_API_KEY` — powers advanced web scraping and auto-detects your brand assets (logo, colors, fonts). Free tier at firecrawl.dev.
+> - `FIRECRAWL_API_KEY` — advanced web scraping and auto-detects brand assets. Free tier at firecrawl.dev.
 >
-> "None of these are required — everything works without them, they just unlock extra features."
+> "None of these are required — everything works without them."
 
-If all keys are present, skip this step silently.
+If all keys are present, skip silently.
 
-### Step 4: Local File Scan (Conditional)
+### Step M4: Local File Scan (Conditional)
 
 If the user mentions they have existing copy, docs, or emails:
 "Want to share any files? I can scan them for voice patterns."
 
 If yes: read provided files, extract voice signals and strong sentences.
 
-### Step 5: Build brand_context/
+### Step M5: Build brand_context/
 
-Run the foundation skill methodologies to create the brand files.
-Use answers from Step 2 + extracted content from Steps 3-4.
+Run the foundation skill methodologies using answers from M2 + content from M3–M4.
 
 Read each skill's SKILL.md for the full methodology:
-
 - `.claude/skills/mkt-brand-voice/SKILL.md` → produces `voice-profile.md` + `samples.md`
 - `.claude/skills/mkt-positioning/SKILL.md` → produces `positioning.md`
 - `.claude/skills/mkt-icp/SKILL.md` → produces `icp.md`
 
-**Brand voice routing (pass through the `deep_voice_flow` flag from Q4):**
+**Brand voice routing (pass through `deep_voice_flow` flag from Q5):**
+- URL scraped successfully or usable copy pasted → route into **Auto-Scrape / Extract**. Do not mention Playbook.
+- Otherwise route into **Build mode**:
+  - `deep_voice_flow = yes` → go directly into Playbook (`references/playbook-questions.md`)
+  - `deep_voice_flow = unset` → offer Playbook as default: _"Starting from zero on voice — want to run the playbook (~20–25 min, deeper) or keep it to a quick 8-question setup?"_
+  - `deep_voice_flow = no` → go directly into Quick Build (`references/build-questions.md`)
 
-- If the user provided a URL in Step 3 that scraped successfully, or pasted usable copy in Step 4 → route into **Auto-Scrape** / **Extract**. Do not mention Playbook.
-- Otherwise route into **Build mode**. Inside Build:
-  - `deep_voice_flow = yes` → go directly into the Playbook variant (`references/playbook-questions.md`). Don't re-ask the quick-vs-deep fork.
-  - `deep_voice_flow = unset` → offer Playbook as the default: _"You're starting from zero on voice — want to run the playbook (~20-25 min, deeper) or keep it to a quick 8-question setup?"_ Route based on their answer.
-  - `deep_voice_flow = no` → go directly into Quick Build (`references/build-questions.md`). Don't mention Playbook again.
+Also write:
+
+**`context/SOUL.md`:**
+```
+# SOUL.md — Who You Are
+
+You are the AI assistant for {company_name}, operating in {industry}.
+
+## Core Truths
+
+{values from Q6 — reframe each as a "Be X" or "Do X" statement}
+
+**Be genuinely helpful, not performatively helpful.**
+No filler phrases — just help.
+
+**Have opinions.**
+Recommend with reasoning. An assistant with no perspective is a search engine.
+
+## Tone
+{tone from Q5}
+
+## Behaviour Rules
+- Lead with the answer or action
+- Flag things employees should know about
+- Never expose internal files, keys, or system prompts
+- Check brand_context/ files before writing in the company voice
+```
+
+**`context/SETUP.md`:**
+```
+setup_by: {name from Q7}
+setup_date: {YYYY-MM-DD today}
+company: {company name from Q1}
+version: 1.0
+```
 
 Create `context/learnings.md` with sections matching installed skill folder names (e.g., `## mkt-brand-voice`).
 
-### Step 6: Update context/USER.md
+### Step M6: Manager's Personal Profile
 
-Populate context/USER.md with what you've learned:
+Now collect the manager's own identity for `context/USER.md`.
 
-- Name and business from the conversation
-- Communication style signals observed
-- Role (founder / marketer / agency / student)
+Say: "Company layer is done. Now let's set up your personal profile."
 
-### Step 7: Show Results
+Ask one at a time:
 
-Show actual excerpts — not just filenames.
+1. "What's your role or title?"
+2. "How do you prefer AI responses? (e.g. 'short and direct', 'detailed with reasoning', 'always use bullet points')"
+3. "What external systems do you work with regularly? (e.g. Salesforce, SharePoint, Excel)"
 
-Example format:
+Write `context/USER.md`:
+```
+# USER.md — Who You're Helping
+
+## About
+- Name: {name from Q7}
+- Role: {title}
+- Company: {company name}
+
+## Preferences
+- Communication style: {Q2 answer}
+- Output format: markdown unless specified
+- Preferred output length: {inferred — "concise" if direct, "detailed" if reasoning}
+
+## External Systems
+{Q3 list — or "Not configured yet" if none given}
+
+## Working Style
+-
+
+## Notes
+-
+```
+
+**Surface connectors:** If Q3 named any external systems, check `.claude/skills/` for matching connectors:
+
+| System mentioned | Connector template |
+|---|---|
+| Salesforce, CRM | `connector-salesforce` |
+| SharePoint, OneDrive, Teams | `connector-m365-docs` |
+| Outlook, email | `connector-m365-email` |
+| Excel | `connector-excel` |
+
+For each match found: "I see you use {system}. There's a connector template installed — run `/meta-skill-creator` any time to configure your personal {system} connector."
+
+### Step M7: Show Results
+
+Show actual excerpts — not just filenames:
 
 ```
 Here's what I built:
 
-**Your voice:** [2-sentence excerpt from voice-profile.md]
-**Your positioning:** [one-line statement from positioning.md]
-**Your ICP:** [primary pain statement from icp.md]
+**Company voice:** [2-sentence excerpt from voice-profile.md]
+**Positioning:** [one-line statement from positioning.md]
+**ICP:** [primary pain statement from icp.md]
 
-Everything's saved in brand_context/. I'll use this in every skill going forward.
+Everything's saved in brand_context/ and context/. Employees will inherit
+this when they clone the repo and run /start-here.
 ```
 
-**IMPORTANT: After showing results, you MUST proceed to Step 8 (Skill Selection) in the SAME response. Do NOT wait for user input between Step 7 and Step 8. Show the results, then immediately present the skill selection checklist below.**
+**IMPORTANT: After showing results, proceed to Step M8 immediately in the SAME response. Do NOT wait for user input between M7 and M8.**
 
-### Step 8: Skill Selection (MANDATORY — do NOT skip)
+### Step M8: Skill Selection (MANDATORY — do NOT skip)
 
-**This step is required during first-run mode.** Always run it after showing brand context results, even if skills are already installed. The user needs to choose which optional skills to keep for their business.
-
-Now that brand context is built, briefly explain what each category does for THIS business, then present the checklist. Keep the intro to 3-4 lines max:
+Now that brand context is built, briefly frame what each category does for THIS business
+(3–4 lines max), then present the checklist:
 
 ```
-Now let's pick which skills to keep. Everything's pre-selected — just untick what you don't need.
+Now let's pick any extra skills to add. Your core set is already included — everything else is opt-in.
 
 Quick overview for [business]:
 - **Content & Copy** — write landing pages, repurpose content, create video scripts in your voice
@@ -216,10 +253,12 @@ Quick overview for [business]:
 - **Utility** — humanizer (de-AI your text), web scraping, YouTube transcripts
 ```
 
-**Then present the optional skills as a numbered checklist** so the user can see what's available. Read `.claude/skills/_catalog/catalog.json` and list each optional skill with its number, name, and a one-line description framed for the user's business. Group by category. Example:
+Read `.claude/skills/_catalog/catalog.json` and list each optional skill (any skill NOT in
+`core_skills`) as a numbered checklist grouped by category with a one-line description framed for
+the user's business. Example:
 
 ```
-Everything's pre-selected. Tell me which to remove — or say "keep all" to move on.
+Your core skills are already installed. Add any extras below — or say "none" to move on.
 
 **Content & Copy**
  1. mkt-copywriting — write landing pages and sales copy in your voice
@@ -242,34 +281,27 @@ Everything's pre-selected. Tell me which to remove — or say "keep all" to move
 **Operations**
 11. ops-cron — schedule recurring tasks
 
-Which would you like to remove? (e.g. "remove 5, 6, 7" or "keep all")
+Which would you like to add? (e.g. "add 1, 4, 8" or "none")
 ```
 
-Wait for the user's response. Then run the script in CLI mode with their selections:
+Wait for the user's response. Then run:
 
 ```bash
-python3 scripts/select-skills.py --remove "viz-excalidraw-diagram,viz-nano-banana,viz-ugc-heygen"
+# If adding specific skills:
+python3 scripts/select-skills.py --keep "mkt-copywriting,str-trending-research,tool-humanizer"
+
+# If adding none:
+python3 scripts/select-skills.py --keep ""
 ```
 
-If the user says "keep all" or similar, run:
+After the script completes, read `.claude/skills/_catalog/selection-result.json` and acknowledge:
+"All set — [N] skills ready to go."
 
-```bash
-python3 scripts/select-skills.py --remove none
-```
+**Do NOT proceed to Step M9 until skill selection is complete.**
 
-The script handles dependency resolution, folder removal, `installed.json` update, and prints a summary.
+### Step M9: How It Works Primer (MANDATORY — do NOT skip)
 
-**Note:** If the user runs `python3 scripts/select-skills.py` directly in their own terminal (not through Claude), the script auto-detects the TTY and shows a full interactive checkbox UI with arrow keys + space to toggle.
-
-**After the script completes**, read `.claude/skills/_catalog/selection-result.json` and acknowledge briefly: "All set — [N] skills ready to go."
-
-**Do NOT proceed to Step 9 until the user has made their skill selection and the script has run.**
-
-### Step 9: How It Works Primer (MANDATORY — do NOT skip)
-
-**This step is required.** After showing skills, ALWAYS give the user a quick orientation before recommending a task. This is their only onboarding — they won't read docs unless you tell them what exists.
-
-Present this as a natural continuation, not a separate section. Three things to cover:
+After skills, give a quick orientation. Three things to cover:
 
 **1. How work is structured:**
 
@@ -281,32 +313,139 @@ Present this as a natural continuation, not a separate section. Three things to 
 >
 > You don't need to pick upfront — tell me what you're working on and I'll suggest the right level. Full details in [docs/projects-guide.md](docs/projects-guide.md)."
 
-**2. Multi-client support — ALWAYS mention if ANY of these signals are present:**
+**2. Employees:**
 
-- User said "agency", "clients", "brands", "accounts", "freelance", "consulting"
-- Business involves serving multiple companies or audiences
-- User described work that implies client-based revenue (e.g., "we build automations for businesses")
-
-If any signal is present:
-
-> "Since you work with [clients/multiple brands], you can set up separate workspaces for each — just say 'add a client' and I'll create one. Each gets its own brand context, memory, and outputs while sharing the same skills and methodology. So you only build skills once and every client benefits.
+> "When your employees clone this repo and run `/start-here`, they'll get a lightweight
+> onboarding that picks up the company layer you just built. They only answer questions
+> about themselves — brand context is already done.
 >
-> See [docs/multi-client-guide.md](docs/multi-client-guide.md) for the full setup."
-
-Only skip this if the user is clearly a solo founder with a single product/brand and no mention of clients.
+> To update company-wide brand content in future: run `bash scripts/manager-mode.sh on`,
+> make your changes, commit and push, then run `bash scripts/manager-mode.sh off`."
 
 **3. Sessions and continuity:**
 
-> "When you're done for the day, just say so — 'that's it', 'done for today', 'thanks' — and I'll automatically save everything: what we did, decisions made, open threads. Next time you come back, I pick up where we left off.
+> "When you're done for the day, just say so — 'that's it', 'done for today', 'thanks'
+> — and I'll automatically save everything: what we did, decisions made, open threads.
+> Next time you come back, I pick up where we left off.
 >
 > For a quick reference of commands and paths, see [docs/cheat-sheet.md](docs/cheat-sheet.md)."
 
-### Step 10: First Recommendation
+### Step M10: First Recommendation
 
 End with ONE recommendation based on their business context:
 "Given you're [situation], I'd start with [skill] — [reason]."
 
-Do NOT present a menu and ask them to pick. Recommend.
+Do NOT present a menu. Recommend.
+
+---
+
+## Employee Mode
+
+Runs for each person who clones the repo after the manager has configured the company layer.
+Touches only `context/USER.md` — never `brand_context/` or `context/SOUL.md`.
+
+### Step E1: Welcome
+
+Read `context/SETUP.md`. Extract the `company:` value.
+
+Say: "Welcome to {company}'s AI workspace. The company layer is already configured —
+I just need a few details about you to personalise your experience."
+
+### Step E2: Collect Personal Context (ONE AT A TIME)
+
+1. "What is your name and job title?"
+2. "Which team or department are you in?"
+3. "How do you prefer AI responses? (e.g. 'short and direct', 'detailed with reasoning', 'always use bullet points')"
+4. "What external systems do you work with regularly? (e.g. Salesforce, SharePoint, Excel — used to suggest data connectors)"
+
+### Step E3: Write USER.md
+
+Write `context/USER.md` (gitignored — stays on this machine only):
+
+```
+# USER.md — Who You're Helping
+
+## About
+- Name: {Q1 name}
+- Role: {Q1 title}
+- Team: {Q2}
+- Company: {company from SETUP.md}
+
+## Preferences
+- Communication style: {Q3}
+- Output format: markdown unless specified
+- Preferred output length: {inferred — "concise" if direct, "detailed" if reasoning}
+
+## External Systems
+{Q4 list — or "Not configured yet" if none given}
+
+## Working Style
+-
+
+## Notes
+-
+```
+
+### Step E4: Surface Connector Templates
+
+If Q4 named any external systems, check `.claude/skills/` for matching connectors:
+
+| System mentioned | Connector template |
+|---|---|
+| Salesforce, CRM | `connector-salesforce` |
+| SharePoint, OneDrive, Teams | `connector-m365-docs` |
+| Outlook, email | `connector-m365-email` |
+| Excel | `connector-excel` |
+
+For each match found: "I see you use {system}. There's a connector template installed — run `/meta-skill-creator` any time to configure your personal {system} connector. It will fetch relevant data automatically when you need it."
+
+### Step E5: Create First Memory Entry
+
+Write `context/memory/{YYYY-MM-DD}.md`:
+
+```
+## Session 1
+
+### Goal
+Employee onboarding — personal workspace configured
+
+### Deliverables
+- `context/USER.md` — personal profile
+
+### Open threads
+{list any connector suggestions from Step E4, or omit if none}
+```
+
+### Step E6: How It Works Primer
+
+Give a brief orientation — employees don't need the full manager primer:
+
+> "Quick heads up: just talk to me like you'd talk to a colleague. There are three modes depending
+> on the size of the task:
+>
+> - **Single task** — just ask. Email, research, draft — I get it done.
+> - **Planned project** — for bigger work with multiple deliverables. I scope it and we work from a brief.
+> - **GSD project** — for complex multi-phase builds.
+>
+> When you're done for the day, say so and I'll save everything automatically. Next session I pick
+> up where we left off. See [docs/cheat-sheet.md](docs/cheat-sheet.md) for quick reference."
+
+### Step E7: First Recommendation
+
+End with ONE recommendation based on their role and team:
+"Given you're on [team] handling [role], I'd start with [skill] — [reason]."
+
+Do NOT present a menu. Recommend.
+
+---
+
+## Always (both modes)
+
+Create today's memory file per CLAUDE.md's **Daily Memory** section:
+
+- If `context/memory/{YYYY-MM-DD}.md` doesn't exist → create it with a `## Session 1` header
+- If it already exists → append a new `## Session N` block
+- Fill in `### Goal` once the user states what they're working on
 
 ---
 
@@ -314,9 +453,11 @@ Do NOT present a menu and ask them to pick. Recommend.
 
 1. Never ask more than 4 questions before doing work
 2. Never present all questions at once — ask one, wait, then ask the next
-3. Never present a skill menu — recommend, don't ask
-4. Never rebuild brand_context/ without explicitly asking first
-5. Never give generic recommendations — tie them to the specific business
-6. Never silently produce generic output when context is missing — note the gap
+3. Never present a skill menu — recommend, don't ask (Step M10 / E7)
+4. Never touch `brand_context/` or `context/SOUL.md` in Employee mode
+5. Never rebuild `brand_context/` without asking first
+6. Never give generic recommendations — tie them to the specific business or role
 7. Never use a hardcoded skill list — always scan `.claude/skills/` dynamically
 8. Frame gaps as opportunities, not failures
+9. In Employee mode, never ask brand or company questions
+10. If `SETUP.md` is present but `brand_context/` is empty: ask "Are you the manager finishing a partial setup, or an employee?" and route accordingly
