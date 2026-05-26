@@ -45,9 +45,17 @@ If yes, guide them:
 
 ### Step M1: Explain What's Happening
 
-Say: "I'll help you configure the company layer. This runs once — employees will inherit
-everything you set up here. I'll ask a few questions about the business, build the brand
-foundation, then set up your personal profile. Let's start with the company."
+Say:
+
+> "**You're in Manager Mode.**
+>
+> This is a one-time setup that builds the company-wide brand foundation — voice, positioning,
+> and ideal customer profile. Everything you create here gets inherited by every employee who
+> joins this workspace. They won't need to answer these questions; they'll build on top of what
+> you set up now.
+>
+> I'll ask a few questions about the business, build the brand files, then set up your personal
+> profile. Let's start with the company."
 
 ### Step M2: Company Identity Questions (ONE AT A TIME)
 
@@ -348,8 +356,15 @@ Touches only `context/USER.md` — never `brand_context/` or `context/SOUL.md`.
 
 Read `context/SETUP.md`. Extract the `company:` value.
 
-Say: "Welcome to {company}'s AI workspace. The company layer is already configured —
-I just need a few details about you to personalise your experience."
+Say:
+
+> "**You're in Employee Mode.**
+>
+> {company}'s brand identity is already set up — voice, positioning, and audience are all
+> defined. This step is just about you. I'll collect a few details so the assistant knows
+> how you work, how you like responses, and what tools you use day-to-day.
+>
+> Everything here is personal to your machine and never shared with the rest of the team."
 
 ### Step E2: Collect Personal Context (ONE AT A TIME)
 
