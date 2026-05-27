@@ -18,6 +18,24 @@ description: >
 
 End-of-session checklist. Four steps: review what was done, collect feedback, apply fixes, commit everything.
 
+## Company Mode Behaviour
+
+If `context/SETUP.md` exists, this is a company install. Check the `MANAGER`
+environment variable before writing to shared files:
+
+**If `MANAGER` is not `true` (employee mode):**
+- Write skill feedback to `context/learnings.local.md` instead of
+  `context/learnings.md`. Create the file if it does not exist, using the same
+  section structure (`# General`, `# Individual Skills`, `## {skill-name}`).
+- Skip any step that proposes changes to `context/SOUL.md` — tell the employee:
+  "Agent identity is managed company-wide. If you'd like to suggest a change,
+  note it for your manager."
+- All other wrap-up steps (memory, daily log, USER.md updates) proceed normally.
+
+**If `MANAGER=true` (manager mode):**
+- Write to `context/learnings.md` as normal.
+- SOUL.md proposals proceed as normal.
+
 ## Outcome
 
 - Updated `context/learnings.md` with session feedback

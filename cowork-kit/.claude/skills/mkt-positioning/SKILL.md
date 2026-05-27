@@ -135,6 +135,11 @@ Log feedback to `context/learnings.md` under `## mkt-positioning` with date and 
 
 *Updated automatically when the user flags issues. Read before every run.*
 
+- Company mode guard: if `context/SETUP.md` exists and the env var `MANAGER` is not
+  set to `true`, stop immediately and say: "Company positioning is manager-owned in
+  this workspace. Contact your manager to update it — changes sync to everyone on
+  next update." Do not proceed further.
+
 ---
 
 ## Self-Update

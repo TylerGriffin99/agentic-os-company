@@ -38,14 +38,14 @@ If no URL found, ask: "What is the company GitHub repo URL?
 ## Step 1: Identify What to Pull
 
 The sync pulls only the `cowork-kit/` folder from the company repo. Specifically:
-- `cowork-kit/skills/` → local `skills/`
+- `cowork-kit/.claude/skills/` → local `.claude/skills/`
 - `cowork-kit/brand_context/` → local `brand_context/`
 - `cowork-kit/context/SOUL.md` → local `context/SOUL.md`
 
 **Never pull or overwrite:**
 - `context/USER.md`
 - `context/memory/`
-- Any `skills/personal-*/` directories
+- Any `.claude/skills/personal-*/` directories
 
 ## Step 2: Pull and Apply
 
@@ -60,11 +60,12 @@ git clone --depth 1 --filter=blob:none --sparse "$COMPANY_REPO" "$TEMP_DIR"
 cd "$TEMP_DIR"
 git sparse-checkout set cowork-kit/
 
-# Copy skills (skip personal-*)
+# Copy skills into .claude/skills/ (skip personal-*)
+mkdir -p ".claude/skills"
 rsync -av --delete \
   --exclude='personal-*' \
-  "${TEMP_DIR}/cowork-kit/skills/" \
-  "./skills/"
+  "${TEMP_DIR}/cowork-kit/.claude/skills/" \
+  "./.claude/skills/"
 
 # Copy brand_context
 rsync -av --delete \

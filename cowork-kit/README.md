@@ -19,7 +19,8 @@ by syncs.
 
 ## Skills
 
-All company skills are in `skills/`. Type `/` in Cowork to see the full list.
+All company skills are in `.claude/skills/`. Type `/` in Claude Code or the
+command-centre to see the full list.
 
 ## Support
 
