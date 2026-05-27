@@ -6,6 +6,8 @@ PROTECTED=(
   "brand_context/"
   "context/SOUL.md"
   "context/SETUP.md"
+  "cowork-kit/context/SOUL.md"
+  "cowork-kit/skills/"
 )
 
 STAGED=$(git diff --cached --name-only 2>/dev/null)

@@ -23,13 +23,15 @@ case "${1:-status}" in
     else
       echo "MANAGER=true" >> "$ENV_FILE"
     fi
-    # Unlock brand_context/ and SOUL.md so manager can edit
+    # Unlock brand_context/, SOUL.md, and cowork-kit company files so manager can edit
     find "${PROJECT_DIR}/brand_context" -type f -exec chmod 644 {} \; 2>/dev/null || true
     chmod 644 "${PROJECT_DIR}/context/SOUL.md" 2>/dev/null || true
     chmod 644 "${PROJECT_DIR}/context/SETUP.md" 2>/dev/null || true
+    chmod 644 "${PROJECT_DIR}/cowork-kit/context/SOUL.md" 2>/dev/null || true
+    find "${PROJECT_DIR}/cowork-kit/skills" -type f -exec chmod 644 {} \; 2>/dev/null || true
     echo ""
     echo "  ✓ Manager mode ON"
-    echo "    brand_context/, SOUL.md, and SETUP.md are now writable."
+    echo "    brand_context/, SOUL.md, SETUP.md, and cowork-kit company files are now writable."
     echo "    Run 'bash scripts/manager-mode.sh off' when done."
     echo "    Remember to commit and push your changes."
     echo ""
@@ -40,10 +42,12 @@ case "${1:-status}" in
     else
       echo "MANAGER=false" >> "$ENV_FILE"
     fi
-    # Re-lock brand_context/ and SOUL.md
+    # Re-lock brand_context/, SOUL.md, and cowork-kit company files
     find "${PROJECT_DIR}/brand_context" -type f -exec chmod 444 {} \; 2>/dev/null || true
     chmod 444 "${PROJECT_DIR}/context/SOUL.md" 2>/dev/null || true
     chmod 444 "${PROJECT_DIR}/context/SETUP.md" 2>/dev/null || true
+    chmod 444 "${PROJECT_DIR}/cowork-kit/context/SOUL.md" 2>/dev/null || true
+    find "${PROJECT_DIR}/cowork-kit/skills" -type f -exec chmod 444 {} \; 2>/dev/null || true
     echo ""
     echo "  ✓ Manager mode OFF — returned to employee mode."
     echo "    Company files are locked again."
