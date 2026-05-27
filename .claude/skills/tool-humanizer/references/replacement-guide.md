@@ -65,6 +65,33 @@ Don't just swap words — restructure the sentence. AI patterns are rarely just 
 | "comprehensive" | "complete" / "full" / describe what it covers |
 | "robust" | "solid" / "reliable" / describe what makes it strong |
 
+### "Serves as" / "Stands as" (Avoiding Simple "Is")
+
+AI avoids "is/are" and replaces them with fancier verbs. Revert to plain English.
+
+| Instead of | Use |
+|-----------|-----|
+| "serves as a venue for" | "is a venue for" |
+| "stands as a reminder of" | "is a reminder of" / "reminds us" |
+| "represents a shift toward" | "is a shift toward" |
+| "functions as a hub" | "is a hub" |
+| "acts as a catalyst" | "is a catalyst" / just describe the effect |
+| "features a wide range of" | "has" |
+| "offers a unique perspective" | "has a different take" / "shows" |
+| "maintains a focus on" | "focuses on" |
+
+### New Vocabulary Replacements
+
+| Instead of | Use |
+|-----------|-----|
+| "align with" / "aligned with" | "match", "fit", "follow" |
+| "enduring" (legacy/impact) | "lasting" or cut — often inflates ordinary things |
+| "garner" / "garnered" | "got", "attracted", "drew" |
+| "boasts" | "has" — "the city has three parks" not "the city boasts three parks" |
+| "vibrant" | Describe what makes it lively. Or "busy", "active", "lively" |
+| "nestled" | "located", "in", "tucked into" — or just state the location |
+| "showcase" / "showcasing" | "show", "demonstrate", "display" |
+
 ### Structure Fixes
 
 | Problem | Fix |
@@ -74,6 +101,18 @@ Don't just swap words — restructure the sentence. AI patterns are rarely just 
 | Always-three lists | Make it 2, 4, or 5. Or just prose. |
 | Announcement of emphasis ("Importantly,") | Cut the word. If the point is important, it shows. |
 | Mirror paragraphs | Restructure: some paragraphs short (1-2 sentences), some longer. Lead differently. |
+| Challenges & Future Prospects formula | Cut the "Despite its X, faces challenges..." structure. State specific problems directly. Remove speculative "Future Outlook" sections unless the user asked for forecasting. |
+| Synonym cycling | Stop rotating terms for the same thing. If it's "the company", keep calling it "the company". Repetition reads as natural; unnecessary synonyms read as AI. |
+| Title case on common nouns | Lowercase "Legacy", "Innovation", "Interpretation" when they aren't proper nouns or part of a title. |
+
+### Formatting Fixes
+
+| Problem | Fix |
+|---------|-----|
+| Excessive boldface | Remove bold from most body text. Bold headings and the occasional key term — not every third phrase. |
+| Inline-header bullet lists | Restructure as prose, or use plain bullets without bolded sub-headers. If the content needs headers, use actual headings. |
+| Smart/curly quotes | Replace " " ' ' with straight " and '. Check output settings if this keeps happening. |
+| Thematic breaks before headings | Remove the horizontal rule. The heading itself provides visual separation. |
 
 ---
 

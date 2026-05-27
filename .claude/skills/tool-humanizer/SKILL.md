@@ -2,9 +2,11 @@
 name: tool-humanizer
 description: >
   Remove AI-generated writing patterns and restore natural human voice.
-  Detects and fixes 50+ AI tells: inflated symbolism, promotional language,
+  Detects and fixes 70+ AI tells: inflated symbolism, promotional language,
   hedging, corporate buzzwords, robotic structure, em dash overuse, rule of
-  three, vague attributions, negative parallelisms, conjunctive phrase abuse.
+  three, vague attributions, negative parallelisms, conjunctive phrase abuse,
+  "serves as" avoidance of "is", synonym cycling, challenges-and-future-prospects
+  formula, title case on common nouns, excessive boldface, inline-header lists.
   Three modes: quick (obvious patterns), standard (full scan + score),
   deep (voice-matched using brand_context/voice-profile.md).
   Called automatically by execution skills as a post-processing step.
@@ -86,8 +88,9 @@ Read `references/pattern-library.md` for the full detection list. Categories:
 4. **Robotic structure** — rhetorical Q+A, obsessive parallelism, always-three lists, "Here are the top X"
 5. **Overused transitions** — "Moreover", "Furthermore", "Additionally", "Nevertheless"
 6. **Promotional inflation** — "transformative", "game-changer", "unprecedented"
-7. **Wikipedia AI tells** — inflated symbolism, em dash overuse, rule of three, vague attributions, negative parallelisms, superficial -ing analyses, excessive conjunctive phrases
-8. **Vocabulary tells** — "delve", "tapestry", "multifaceted", "landscape", "nuanced", "foster", "realm"
+7. **Wikipedia AI tells** — inflated symbolism, em dash overuse, rule of three, vague attributions, negative parallelisms, superficial -ing analyses, excessive conjunctive phrases, "serves as" avoidance of "is", challenges-and-future-prospects formula, synonym cycling, title case on common nouns
+8. **Vocabulary tells** — "delve", "tapestry", "multifaceted", "landscape", "nuanced", "foster", "realm", "align with", "enduring", "garner", "boasts", "vibrant", "nestled", "showcase"
+9. **Formatting tells** — excessive boldface, inline-header bullet lists, smart/curly quotation marks
 
 Read `references/replacement-guide.md` for what to replace with.
 

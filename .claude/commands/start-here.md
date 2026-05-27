@@ -292,7 +292,7 @@ Your core skills are already installed. Add any extras below — or say "none" t
 **Operations**
 11. ops-cron — schedule recurring tasks
 
-Which would you like to add? (e.g. "add 1, 4, 8" or "none")
+Which would you like to add? (e.g. "add 1, 4, 8", "all", or "none")
 ```
 
 Wait for the user's response. Then run:
