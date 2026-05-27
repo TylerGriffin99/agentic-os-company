@@ -230,6 +230,10 @@ After saving, show the user actual excerpts — not just confirmation of file pa
 
 _Updated automatically when the user flags issues. Read before every run._
 
+- Company mode guard: if `context/SETUP.md` exists and the env var `MANAGER` is not
+  set to `true`, stop immediately and say: "Brand voice is manager-owned in this
+  workspace. To update the company brand voice, contact your manager — they will
+  commit the changes and everyone gets them on next update." Do not proceed further.
 - 2026-04-29: Match output language to the user's language. If the user writes in Portuguese, produce the voice profile, samples, and all questions in Portuguese. Never default to English when the user hasn't written in English.
 
 ---

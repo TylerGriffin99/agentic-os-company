@@ -125,6 +125,14 @@ Flag when density exceeds 3 per 500 words:
 | Underscore | "This underscores the importance of..." |
 | Pivotal | "A pivotal moment/role/development" |
 | Spearheaded | "She spearheaded the initiative" |
+| "Serves as" / "stands as" avoidance of "is" | AI replaces simple "is/are" with "serves as a venue", "stands as a reminder", "represents a shift". Look for "serves as", "stands as", "functions as", "acts as", "represents" where "is" would be natural. |
+| Challenges & Future Prospects formula | Rigid pattern: "Despite its X, [subject] faces challenges..." followed by speculative "Future Outlook" / "Looking Ahead" section. AI defaults to this for any topic with complexity. |
+| Synonym cycling / unnecessary lexical diversity | Rotating between different terms for the same thing instead of natural repetition. E.g., "the company" → "the firm" → "the organization" → "the enterprise" within a few paragraphs. Humans reuse words; AI avoids it. |
+| Title case on common nouns | Capitalizing words that aren't proper nouns mid-sentence: "the Legacy of", "their Interpretation", "driving Innovation". AI treats concepts as proper nouns. |
+| Boasts | "The city boasts a vibrant..." / "the platform boasts an impressive..." — travel-guide/promotional tone applied to non-travel subjects |
+| Vibrant | "A vibrant community/culture/ecosystem" — promotional filler that says nothing specific |
+| Nestled | "Nestled in the heart of..." / "nestled among the hills" — near-certain AI tell outside of actual travel writing |
+| Showcase | "Showcasing their commitment to..." / "a showcase of innovation" — promotional press-release language |
 
 ## 8. AI Vocabulary Tells — Severity: HIGH
 
@@ -134,10 +142,20 @@ Words that appear 10-50x more frequently in AI text than human text:
 delve, tapestry, multifaceted, nuanced, landscape (metaphorical), realm, beacon, testament, cornerstone, bustling, foster, underscore, pivotal, spearheaded, embark, meticulous, intricate, commendable, noteworthy
 
 **High confidence:**
-paramount, indispensable, invaluable, exemplary, adept, unwavering, groundbreaking, holistic, synergy, catalyst, resonate, reverberate, encompass, culminate
+paramount, indispensable, invaluable, exemplary, adept, unwavering, groundbreaking, holistic, synergy, catalyst, resonate, reverberate, encompass, culminate, align with, enduring, garner, boasts, vibrant, nestled, showcase
 
 **Medium confidence (context-dependent):**
-robust (non-technical), comprehensive (as praise), streamline, enhance, empower, innovative, strategic, dynamic, sustainable, leverage
+robust (non-technical), comprehensive (as praise), streamline, enhance, empower, innovative, strategic, dynamic, sustainable, leverage, highlighting, crucial (standalone), fostering
+
+## 9. Formatting Tells — Severity: MEDIUM
+
+| Pattern | What to look for |
+|---------|-----------------|
+| Excessive boldface | Over-emphasis through bold — more than 3-4 bold phrases per 500 words in body text (headings excluded) |
+| Inline-header bullet lists | Structured bullets where every item has a **bolded sub-header** followed by a dash and explanation. AI's signature "helpful list" format. |
+| Smart/curly quotation marks | Curly quotes (" " ' ') instead of straight quotes (" '). AI outputs smart quotes; most human-typed text uses straight. Context-dependent — some style guides prefer curly. |
+| Title case on common nouns | Capitalizing non-proper nouns mid-sentence: "the Legacy of", "driving Innovation", "their Interpretation". AI treats abstract concepts as proper nouns. |
+| Thematic breaks before headings | Horizontal rules (---) immediately before section headers. Humans rarely add these manually. |
 
 ---
 
@@ -149,6 +167,7 @@ When scanning, check in this order (highest-impact first):
 3. Robotic structure (Section 4) — hardest for humans to miss
 4. Corporate buzzwords (Section 3) — easy replacements
 5. Promotional inflation (Section 6) — easy replacements
-6. Wikipedia tells (Section 7) — subtler patterns
-7. Hedging language (Section 2) — context-dependent
-8. Overused transitions (Section 5) — density-dependent
+6. Wikipedia tells (Section 7) — subtler patterns ("serves as", synonym cycling, challenges formula)
+7. Formatting tells (Section 9) — visual patterns (boldface, inline-header lists, title case)
+8. Hedging language (Section 2) — context-dependent
+9. Overused transitions (Section 5) — density-dependent

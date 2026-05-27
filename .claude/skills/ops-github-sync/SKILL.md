@@ -16,7 +16,8 @@ brand context. Skips all personal files.
 
 ## Outcome
 
-Updated `skills/`, `brand_context/`, and `context/SOUL.md` in the current workspace.
+Updated `.claude/skills/`, `brand_context/`, and `context/SOUL.md` in the current workspace.
+Also updates the Cowork plugin at `cowork-kit/` if it exists locally.
 `context/USER.md` and `context/memory/` are never touched.
 
 ## Context Needs
@@ -37,15 +38,19 @@ If no URL found, ask: "What is the company GitHub repo URL?
 
 ## Step 1: Identify What to Pull
 
-The sync pulls only the `cowork-kit/` folder from the company repo. Specifically:
-- `cowork-kit/skills/` → local `skills/`
+The sync pulls only the `cowork-kit/` folder from the company repo. The cowork-kit
+is a Cowork plugin (skills at `skills/`, manifest at `.claude-plugin/plugin.json`).
+
+Mapping:
+- `cowork-kit/skills/` → local `.claude/skills/` (for Code mode)
 - `cowork-kit/brand_context/` → local `brand_context/`
 - `cowork-kit/context/SOUL.md` → local `context/SOUL.md`
+- `cowork-kit/` (entire plugin) → local `cowork-kit/` (for Cowork mode, if it exists)
 
 **Never pull or overwrite:**
 - `context/USER.md`
 - `context/memory/`
-- Any `skills/personal-*/` directories
+- Any `.claude/skills/personal-*/` directories
 
 ## Step 2: Pull and Apply
 
@@ -60,11 +65,21 @@ git clone --depth 1 --filter=blob:none --sparse "$COMPANY_REPO" "$TEMP_DIR"
 cd "$TEMP_DIR"
 git sparse-checkout set cowork-kit/
 
-# Copy skills (skip personal-*)
+# Copy plugin skills/ into .claude/skills/ for Code mode (skip personal-*)
+mkdir -p ".claude/skills"
 rsync -av --delete \
   --exclude='personal-*' \
   "${TEMP_DIR}/cowork-kit/skills/" \
-  "./skills/"
+  "./.claude/skills/"
+
+# Update the local cowork-kit plugin if it exists (for Cowork mode)
+if [[ -d "./cowork-kit" ]]; then
+  rsync -av --delete \
+    --exclude='context/USER.md' \
+    --exclude='context/memory/' \
+    "${TEMP_DIR}/cowork-kit/" \
+    "./cowork-kit/"
+fi
 
 # Copy brand_context
 rsync -av --delete \

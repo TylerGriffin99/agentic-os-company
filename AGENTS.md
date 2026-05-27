@@ -341,7 +341,6 @@ Every skill and its output folder uses a category prefix.
 | Skill | Triggers on |
 |-------|-------------|
 | `ops-cron` | "schedule a job", "cron job", "run this every morning", "automate daily", "recurring task", "scheduled job", "check scheduled jobs", "list jobs", "run job manually", "start crons", "stop crons", "cron status", "cron logs" |
-| `start-here` | first-run setup, new install, "set me up", onboarding, "I'm new here" |
 | `ops-github-sync` | "sync skills", "pull latest", "update company skills", "sync from GitHub" |
 | `ops-m365-sync` | "sync from SharePoint", "pull M365", "sync Teams", "get OneDrive files" |
 
@@ -379,7 +378,6 @@ Load only the `brand_context/` files listed for each skill.
 | `ops-cron` | — | — | — | — | — | `## ops-cron` |
 | `ops-new-feature` | — | — | — | — | — | `## ops-new-feature` |
 | `ops-release` | — | — | — | — | — | `## ops-release` |
-| `start-here` | — | — | — | — | — | `## start-here` |
 | `ops-github-sync` | — | — | — | — | — | `## ops-github-sync` |
 | `ops-m365-sync` | tone only | — | — | — | — | `## ops-m365-sync` |
 | `connector-salesforce` | — | — | — | — | — | `## connector-salesforce` |

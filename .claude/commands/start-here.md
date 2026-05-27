@@ -177,6 +177,7 @@ Recommend with reasoning. An assistant with no perspective is a search engine.
 setup_by: {name from Q7}
 setup_date: {YYYY-MM-DD today}
 company: {company name from Q1}
+github_repo: {origin URL confirmed or created in Step M0 — leave blank if M0 was skipped}
 version: 1.0
 ```
 
@@ -291,7 +292,7 @@ Your core skills are already installed. Add any extras below — or say "none" t
 **Operations**
 11. ops-cron — schedule recurring tasks
 
-Which would you like to add? (e.g. "add 1, 4, 8" or "none")
+Which would you like to add? (e.g. "add 1, 4, 8", "all", or "none")
 ```
 
 Wait for the user's response. Then run:
@@ -495,6 +496,19 @@ Give a brief orientation — employees don't need the full manager primer:
 >
 > When you're done for the day, say so and I'll save everything automatically. Next session I pick
 > up where we left off. See [docs/cheat-sheet.md](docs/cheat-sheet.md) for quick reference."
+
+### Step E7.5: Cron + Sync Setup
+
+Tell the employee:
+
+> "Company skills sync automatically each weekday at 8am via a built-in cron template.
+> To enable it, run `/ops-cron` and install `cron/templates/daily-sync.json`.
+> You can also run `/ops-github-sync` any time to pull the latest skills manually."
+
+Then ask: "Want me to run a sync now to make sure your skills are current? (yes/no)"
+
+- **Yes** → run `/ops-github-sync` before continuing
+- **No** → continue
 
 ### Step E8: First Recommendation
 
