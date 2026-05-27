@@ -180,6 +180,8 @@ company: {company name from Q1}
 version: 1.0
 ```
 
+**`cowork-kit/context/SOUL.md`:** Write the same content as `context/SOUL.md`. This is the committed version that cowork users inherit when they connect this repo to a Claude.ai Project.
+
 Create `context/learnings.md` with sections matching installed skill folder names (e.g., `## mkt-brand-voice`).
 
 ### Step M6: Manager's Personal Profile
@@ -321,11 +323,19 @@ After skills, give a quick orientation. Three things to cover:
 >
 > You don't need to pick upfront — tell me what you're working on and I'll suggest the right level. Full details in [docs/projects-guide.md](docs/projects-guide.md)."
 
-**2. Employees:**
+**2. Employees and cowork:**
 
 > "When your employees clone this repo and run `/start-here`, they'll get a lightweight
 > onboarding that picks up the company layer you just built. They only answer questions
 > about themselves — brand context is already done.
+>
+> Employees who work in **Claude.ai (cowork)** instead of the terminal get the same
+> experience — they connect this GitHub repo to a Claude.ai Project and brand context,
+> skills, and agent identity load automatically from `cowork-kit/`. Their personal
+> memories and voice stay in their own Project and are never pushed to the repo.
+>
+> **Action required:** Push your changes now so cowork is ready:
+> `git add cowork-kit/context/SOUL.md brand_context/ && git push`
 >
 > To update company-wide brand content in future: run `bash scripts/manager-mode.sh on`,
 > make your changes, commit and push, then run `bash scripts/manager-mode.sh off`."
@@ -402,7 +412,9 @@ are separate per environment."
 
 ### Step E4: Write USER.md
 
-Write `context/USER.md` (gitignored — stays on this machine only):
+Write `context/USER.md` (gitignored — stays on this machine only) AND `cowork-kit/context/USER.md` (committed empty template — cowork sessions read this):
+
+**Both files get the same content.** `context/USER.md` is never pushed. `cowork-kit/context/USER.md` is the cowork-readable copy — personal data written there during cowork sessions stays in the user's Project and is never committed back to GitHub.
 
 ```
 # USER.md — Who You're Helping
