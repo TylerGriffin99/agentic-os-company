@@ -17,7 +17,7 @@ Read `brand_context/` files (voice-profile, positioning) before producing any
 external-facing content.
 
 ## Skills
-Skills live in `.claude/skills/`. Use them when the task matches. Type `/` to browse.
+Skills live in `skills/`. Use them when the task matches. Type `/` to browse.
 
 ## External Systems
 If USER.md lists external systems and matching `skills/connector-*` folders exist,

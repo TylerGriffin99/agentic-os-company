@@ -10,20 +10,36 @@ KIT_DIR="${PROJECT_DIR}/cowork-kit"
 echo "Building cowork-kit/..."
 
 # Clean previous build (preserve context/memory/ if it exists)
-rm -rf "${KIT_DIR}/.claude/skills"
-rm -rf "${KIT_DIR}/skills"           # remove legacy path if it still exists
+rm -rf "${KIT_DIR}/skills"
+rm -rf "${KIT_DIR}/.claude"          # remove prior Claude Code path if it still exists
 rm -rf "${KIT_DIR}/brand_context"
 rm -f  "${KIT_DIR}/context/SOUL.md"
 
-# 1. Copy company skills (exclude personal-* and _catalog)
-mkdir -p "${KIT_DIR}/.claude/skills"
+# 1. Copy company skills into plugin skills/ (exclude personal-* and _catalog)
+mkdir -p "${KIT_DIR}/skills"
 for skill_dir in "${PROJECT_DIR}/.claude/skills"/*/; do
   skill_name=$(basename "$skill_dir")
   [[ "$skill_name" == _catalog ]] && continue
   [[ "$skill_name" == personal-* ]] && continue
-  cp -R "$skill_dir" "${KIT_DIR}/.claude/skills/${skill_name}"
+  cp -R "$skill_dir" "${KIT_DIR}/skills/${skill_name}"
 done
-echo "  ✓ .claude/skills/ ($(ls "${KIT_DIR}/.claude/skills" | wc -l | tr -d ' ') skills)"
+echo "  ✓ skills/ ($(ls "${KIT_DIR}/skills" | wc -l | tr -d ' ') skills)"
+
+# 1b. Generate plugin manifest
+mkdir -p "${KIT_DIR}/.claude-plugin"
+COMPANY="Unknown"
+if [[ -f "${PROJECT_DIR}/context/SETUP.md" ]]; then
+  COMPANY=$(grep "^company:" "${PROJECT_DIR}/context/SETUP.md" | sed 's/company: *//' | tr -d '\r')
+fi
+cat > "${KIT_DIR}/.claude-plugin/plugin.json" <<MANIFEST
+{
+  "name": "$(echo "${COMPANY}" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')-cowork",
+  "description": "${COMPANY} company skills, brand context, and agent identity for Cowork",
+  "version": "1.0.0",
+  "author": "${COMPANY}"
+}
+MANIFEST
+echo "  ✓ .claude-plugin/plugin.json"
 
 # 2. Copy brand_context/
 if [[ -d "${PROJECT_DIR}/brand_context" ]]; then

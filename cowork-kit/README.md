@@ -19,8 +19,10 @@ by syncs.
 
 ## Skills
 
-All company skills are in `.claude/skills/`. Type `/` in Claude Code or the
-command-centre to see the full list.
+All company skills are in `skills/`. This folder is a Cowork plugin — install it
+through the Cowork plugin manager and skills appear as `/{plugin}:{skill-name}`.
+In Claude Code (Code mode), `ops-github-sync` copies these into `.claude/skills/`
+where they're discovered natively.
 
 ## Support
 
